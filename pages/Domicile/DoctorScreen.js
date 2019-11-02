@@ -29,9 +29,6 @@ class DoctorScreen extends React.Component {
     super(props);
     this.state = {modalVisible: false, date: '', time: ''};
   }
-  componentDidMount() {
-    alert(this.props.user.rdv.time);
-  }
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
@@ -44,161 +41,50 @@ class DoctorScreen extends React.Component {
         <ScrollView
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{
-            flex: 1,
             justifyContent: 'flex-end',
           }}>
+          <Image
+            style={{width: 200, height: 300, alignSelf: 'center'}}
+            source={require('../../assets/images/accueil/doc.png')}
+          />
           <Text style={styles.subtext}>Planifier un rendez-vous.</Text>
-          <DatePicker
-            style={[
-              styles.birthdateInput,
-              // {borderColor: '#000000', marginTop: 10},
-            ]}
-            date={this.state.date}
-            mode="date"
-            placeholder="Date de rendez-vous"
-            format="DD-MM-YYYY"
-            minDate="02-11-2019"
-            confirmBtnText="Confirmer"
-            cancelBtnText="Annuler"
-            customStyles={{
-              dateIcon: {
-                position: 'absolute',
-                left: 0,
-                top: 4,
-                marginLeft: wp(3),
-              },
-              dateText: {
-                color: '#000000',
-                fontFamily: 'Poppins-Regular',
-                fontSize: normalize(12.5),
-              },
-              dateTouchBody: {
-                shadowColor: 'rgba(0, 0, 0, 0.05)',
-                shadowOffset: {width: 2, height: 0},
-                shadowRadius: 5,
-                borderRadius: 25,
-                borderColor: '#ececec',
-                borderStyle: 'solid',
-                borderWidth: 1,
-                backgroundColor: '#ffffff',
-              },
-              dateInput: {
-                borderColor: '#f5448e',
-                borderWidth: 0,
-              },
-              placeholderText: {
-                color: '#a0a0a0',
-                fontSize: normalize(12.5),
-              },
-            }}
-            onDateChange={date => {
-              this.setState({date});
-            }}
-          />
-          <DatePicker
-            style={[
-              styles.birthdateInput,
-              // {borderColor: '#000000', marginTop: 10},
-            ]}
-            iconSource={require('../../assets/images/accueil/clock.png')}
-            date={this.state.time}
-            mode="time"
-            placeholder="Heure de rendez-vous"
-            confirmBtnText="Confirmer"
-            cancelBtnText="Annuler"
-            customStyles={{
-              dateIcon: {
-                position: 'absolute',
-                left: 0,
-                top: 4,
-                marginLeft: wp(3),
-              },
-              dateText: {
-                color: '#000000',
-                fontFamily: 'Poppins-Regular',
-                fontSize: normalize(12.5),
-              },
-              dateTouchBody: {
-                shadowColor: 'rgba(0, 0, 0, 0.05)',
-                shadowOffset: {width: 2, height: 0},
-                shadowRadius: 5,
-                borderRadius: 25,
-                borderColor: '#ececec',
-                borderStyle: 'solid',
-                borderWidth: 1,
-                backgroundColor: '#ffffff',
-              },
-              dateInput: {
-                borderColor: '#f5448e',
-                borderWidth: 0,
-              },
-              placeholderText: {
-                color: '#a0a0a0',
-                fontSize: normalize(12.5),
-              },
-            }}
-            onDateChange={time => {
-              this.setState({time});
-            }}
-          />
+          <View style={{marginBottom: hp(7), marginLeft: wp(19)}}>
+            <Text style={{fontFamily: 'Quicksand-Regular', fontSize: 20}}>
+              <Text style={{fontWeight: 'bold', fontSize: 23}}>Nom:</Text>
+              {'        '}
+              Benmorad
+            </Text>
+            <Text style={{fontFamily: 'Quicksand-Regular', fontSize: 20}}>
+              <Text style={{fontWeight: 'bold', fontSize: 23}}>Prénom:</Text>
+              {'  '}
+              Karim
+            </Text>
+          </View>
           <View
             style={[
               styles.buttonView,
-              {marginTop: hp(2), marginBottom: hp(8)},
+              {marginTop: hp(2), marginBottom: hp(8), flexDirection: 'row'},
             ]}>
             <Button
-              title="Valider"
+              title="Accepter"
               titleStyle={styles.buttonTitle}
-              buttonStyle={styles.button}
-              onPress={() =>
-                this.state.date !== '' && this.state.time !== ''
-                  ? this.trigger()
-                  : alert('Veuillez remplir tous les champs.')
-              }
+              buttonStyle={[styles.button, {marginRight: wp(4)}]}
+              onPress={() => this.props.navigation.navigate('Validated')}
+            />
+            <Button
+              title="Refuser"
+              titleStyle={styles.buttonTitle}
+              buttonStyle={[
+                styles.button,
+                {marginLeft: wp(4), backgroundColor: 'grey'},
+              ]}
+              onPress={() => this.props.navigation.navigate('Accueil')}
             />
           </View>
-          <View
-            style={{
-              justifyContent: 'flex-end',
-            }}>
-            <Image
-              style={styles.logo}
-              source={require('../../assets/images/dawi.png')}
-            />
-          </View>
-          <Overlay
-            isVisible={this.state.modalVisible}
-            onBackdropPress={() => this.setModalVisible(false)}
-            overlayStyle={styles.modal}>
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginTop: hp(3),
-              }}>
-              <Progress.CircleSnail
-                thickness={7}
-                size={100}
-                indeterminate={true}
-                color={'#f5448e'}
-              />
-            </View>
-            <Text style={styles.btnText}>Recherche de médecin en cours..</Text>
-          </Overlay>
         </ScrollView>
       );
     }
   }
-  trigger = () => {
-    this.setModalVisible(true);
-    let go = setInterval(() => {
-      this.setModalVisible(false);
-      alert('Worked');
-      //this.props.navigation.navigate('Home');
-      clearInterval(go);
-    }, 2500);
-  };
-
   _verify = async () => {
     const {enteredCode, attempts} = this.state,
       {code} = this.props.user;
@@ -217,28 +103,6 @@ class DoctorScreen extends React.Component {
   };
 }
 const styles = StyleSheet.create({
-  btnText: {
-    marginTop: hp(4),
-    color: '#f5448e',
-    fontFamily: 'Quicksand-Semibold',
-    fontSize: normalize(21),
-    textAlign: 'center',
-  },
-  modal: {
-    width: wp(70),
-    height: hp(36),
-    backgroundColor: '#fdfdfd',
-    borderRadius: 20,
-    justifyContent: 'flex-start',
-  },
-  birthdateInput: {
-    width: wp(76.8), //'76.8%',
-    height: 40, //'4.3%',
-    // backgroundColor: '#ffffff',
-    textAlign: 'center',
-    marginBottom: hp(5), // '5%',
-    alignSelf: 'center',
-  },
   buttonView: {marginTop: hp(0), alignSelf: 'center'},
   buttonTitle: {
     color: '#fdfdfd',
@@ -251,36 +115,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#4043b4',
     width: wp(28),
   },
-  logo: {
-    width: '100%', //'35.5%',
-    height: hp(35), //'21.4%',
-    opacity: 0.78,
-  },
-  input: {
-    width: wp(50),
-    height: 55,
-    shadowColor: 'rgba(0, 0, 0, 0.05)',
-    shadowOffset: {width: 2, height: 0},
-    shadowRadius: 5,
-    borderRadius: 25,
-    borderColor: '#ececec',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    backgroundColor: '#ffffff',
-    textAlign: 'center',
-    marginBottom: hp(6),
-    alignSelf: 'center',
-    fontSize: normalize(20),
-    fontFamily: 'Poppins-Regular',
-    letterSpacing: 4.47,
-  },
   subtext: {
     opacity: 0.85,
     color: '#158298',
     fontFamily: 'Poppins-Regular',
-    fontSize: normalize(16),
+    fontSize: normalize(30),
     textAlign: 'center',
     marginBottom: hp(3),
+    marginTop: hp(5),
   },
 });
 

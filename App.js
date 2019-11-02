@@ -16,6 +16,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import HomeScreen from './pages/HomeScreen';
 import SignInScreen from './pages/Authentification/SignInScreen';
 import ScheduleScreen from './pages/Domicile/ScheduleScreen';
+import Validated from './pages/Domicile/Validated';
 import DoctorScreen from './pages/Domicile/DoctorScreen';
 import SignUpScreen from './pages/Authentification/SignUpScreen';
 import UserInfoScreen from './pages/Authentification/UserInfoScreen';
@@ -48,6 +49,7 @@ const HomeStack = createStackNavigator(
     Home: {screen: HomeScreen},
     Schedule: {screen: ScheduleScreen},
     Doctor: {screen: DoctorScreen},
+    Validated: {screen: Validated},
   },
   {
     defaultNavigationOptions: {
@@ -63,7 +65,7 @@ const App = createBottomTabNavigator(
   {
     Historique: {screen: HomeStack},
     Accueil: {screen: HomeStack},
-    Map: {screen: HomeStack},
+    Pharmacies: {screen: HomeStack},
   },
   {
     resetOnBlur: true,
@@ -114,7 +116,7 @@ const App = createBottomTabNavigator(
               }}
             />
           );
-        } else if (routeName === 'Map') {
+        } else if (routeName === 'Pharmacies') {
           return (
             <Image
               source={

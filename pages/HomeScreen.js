@@ -84,7 +84,7 @@ class HomeScreen extends React.Component {
           }}>
           <Image
             source={require('../assets/images/logo.png')}
-            style={{width: wp(17), height: wp(20), marginLeft: wp(1.8)}}
+            style={{width: wp(15), height: wp(18), marginLeft: wp(1.8)}}
           />
           <TouchableOpacity
             style={{
@@ -119,7 +119,8 @@ class HomeScreen extends React.Component {
         </Text>
         {!user.visit ? (
           <Text style={[styles.name, {fontSize: normalize(13)}]}>
-            Vous avez un rendez-vous vidéo à 19h30.
+            Vous avez un rendez-vous vidéo le {this.props.user.rdv.date} à{' '}
+            {this.props.user.rdv.time}.
           </Text>
         ) : (
           <Text />
@@ -211,7 +212,7 @@ class HomeScreen extends React.Component {
           onBackdropPress={() => this.setModalVisible(false)}
           overlayStyle={styles.modal}>
           <Button
-            title="Consultation à Distance"
+            title="Traitement à Domicile"
             titleStyle={styles.buttonTitle}
             buttonStyle={{
               backgroundColor: '#f5448e',
@@ -219,18 +220,18 @@ class HomeScreen extends React.Component {
               height: hp(8),
               marginBottom: hp(4),
             }}
+            onPress={() => {
+              this.setModalVisible(false);
+              this.props.navigation.navigate('Schedule');
+            }}
           />
           <Button
-            title="Traitement à Domicile"
+            title="Consultation à Distance"
             titleStyle={styles.buttonTitle}
             buttonStyle={{
               backgroundColor: '#f5448e',
               width: '100%',
               height: hp(8),
-            }}
-            onPress={() => {
-              this.setModalVisible(false);
-              this.props.navigation.navigate('Schedule');
             }}
           />
         </Overlay>
