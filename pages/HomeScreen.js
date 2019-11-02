@@ -45,7 +45,9 @@ class HomeScreen extends React.Component {
   state = {
     modalVisible: false,
   };
-
+  static navigationOptions = {
+    header: null,
+  };
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
@@ -225,6 +227,10 @@ class HomeScreen extends React.Component {
               backgroundColor: '#f5448e',
               width: '100%',
               height: hp(8),
+            }}
+            onPress={() => {
+              this.setModalVisible(false);
+              this.props.navigation.navigate('Schedule');
             }}
           />
         </Overlay>

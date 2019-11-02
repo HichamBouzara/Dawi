@@ -48,7 +48,7 @@ class SignInScreen extends React.Component {
         <View style={styles.inputView}>
           <Text style={styles.subtitle}>Email:</Text>
           <TextInput
-            style={[styles.input, {marginBottom: hp(2)}]}
+            style={[styles.input]}
             placeholder="Email Professionnel ou Personnel"
             onChangeText={username => this.setState({username})}
             value={this.state.username}

@@ -15,6 +15,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import HomeScreen from './pages/HomeScreen';
 import SignInScreen from './pages/Authentification/SignInScreen';
+import ScheduleScreen from './pages/Domicile/ScheduleScreen';
 import SignUpScreen from './pages/Authentification/SignUpScreen';
 import UserInfoScreen from './pages/Authentification/UserInfoScreen';
 import ConfirmationScreen from './pages/Authentification/ConfirmationScreen';
@@ -44,14 +45,14 @@ const AuthStack = createStackNavigator(
 const HomeStack = createStackNavigator(
   {
     Home: {screen: HomeScreen},
+    Schedule: {screen: ScheduleScreen},
   },
   {
     defaultNavigationOptions: {
-      header: null,
       headerStyle: {
         backgroundColor: 'ffffff',
       },
-      headerTintColor: '#fe116e',
+      headerTintColor: '#707070',
     },
   },
 );
