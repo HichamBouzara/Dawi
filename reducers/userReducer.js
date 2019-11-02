@@ -16,6 +16,7 @@ const initialState = {
   user: {},
   error: {},
   code: '',
+  visit: false,
 };
 
 export default function(state = initialState, action) {

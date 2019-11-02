@@ -5,6 +5,9 @@ import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import * as Progress from 'react-native-progress';
 
 export default class Loading extends React.Component {
+  static navigationOptions = {
+    header: null,
+  };
   //Detail Screen to show from any Open detail button
   render() {
     return (

@@ -101,26 +101,36 @@ class SignUpScreen extends React.Component {
               justifyContent: 'space-between',
             },
           ]}>
-          <Button
-            title="Facebook"
-            titleStyle={styles.buttonTitle}
-            buttonStyle={[
+          <TouchableOpacity
+            style={[
               styles.button,
-              {backgroundColor: '#4267b2', marginRight: 10},
+              {
+                backgroundColor: '#4267b2',
+                marginLeft: 10,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
             ]}
-            onPress={this._signin}
-          />
-          <Button
-            title="Google"
-            titleStyle={styles.buttonTitle}
-            buttonStyle={[
+            onPress={this._signin}>
+            <Icon name="facebook" size={14} color="#fff" />
+            <Text style={styles.buttonTitle}>{`  `}Facebook</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
               styles.button,
-              {backgroundColor: '#dd4b39', marginLeft: 10},
+              {
+                backgroundColor: '#dd4b39',
+                marginLeft: 10,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              },
             ]}
-            onPress={this._signin}
-          />
-
-          <Icon name="sign-in" size={20} color="#666" />
+            onPress={this._signin}>
+            <Icon name="google" size={14} color="#fff" />
+            <Text style={styles.buttonTitle}>{`  `}Google</Text>
+          </TouchableOpacity>
         </View>
         <View
           style={{
@@ -186,6 +196,7 @@ const styles = StyleSheet.create({
     borderRadius: 66,
     backgroundColor: '#4043b4',
     width: wp(28),
+    height: 30,
   },
   logo: {
     width: '100%', //'35.5%',
