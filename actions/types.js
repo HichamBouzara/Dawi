@@ -21,3 +21,4 @@ export const USE_COUPON = 'USE_COUPON';
 export const GET_COUPONS = 'GET_COUPONS';
 export const GET_MONTHS = 'GET_MONTHS';
 export const CREATE_COUPON = 'CREATE_COUPON';
+export const SET_RDV = 'SET_RDV';

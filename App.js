@@ -16,6 +16,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import HomeScreen from './pages/HomeScreen';
 import SignInScreen from './pages/Authentification/SignInScreen';
 import ScheduleScreen from './pages/Domicile/ScheduleScreen';
+import DoctorScreen from './pages/Domicile/DoctorScreen';
 import SignUpScreen from './pages/Authentification/SignUpScreen';
 import UserInfoScreen from './pages/Authentification/UserInfoScreen';
 import ConfirmationScreen from './pages/Authentification/ConfirmationScreen';
@@ -46,6 +47,7 @@ const HomeStack = createStackNavigator(
   {
     Home: {screen: HomeScreen},
     Schedule: {screen: ScheduleScreen},
+    Doctor: {screen: DoctorScreen},
   },
   {
     defaultNavigationOptions: {

@@ -1,5 +1,3 @@
-import isEmpty from '../utils/is-empty';
-
 import {
   SET_CURRENT_USER,
   UPDATE_USER,
@@ -7,6 +5,7 @@ import {
   GET_CODE,
   CONFIRM_USER,
   GET_ERRORS,
+  SET_RDV,
   SUBSCRIBE_USER,
 } from '../actions/types';
 
@@ -17,6 +16,7 @@ const initialState = {
   error: {},
   code: '',
   visit: false,
+  rdv: {date: '', time: ''},
 };
 
 export default function(state = initialState, action) {
@@ -59,6 +59,11 @@ export default function(state = initialState, action) {
         ...state,
         error: action.payload,
         loading: false,
+      };
+    case SET_RDV:
+      return {
+        ...state,
+        rdv: action.payload,
       };
     default:
       return state;

@@ -8,6 +8,7 @@ import {
   USER_LOADING,
   CONFIRM_USER,
   GET_CODE,
+  SET_RDV,
   SUBSCRIBE_USER,
 } from './types';
 // axios.defaults.xsrfCookieName = 'csrftoken';
@@ -15,7 +16,12 @@ import {
 axios.defaults.withCredentials = true;
 const URL = 'http://ec2-34-241-63-192.eu-west-1.compute.amazonaws.com/api';
 const URL2 = 'http://aquinetic.pythonanywhere.com/api';
-
+export const setRDV = date => dispatch => {
+  dispatch({
+    type: SET_RDV,
+    payload: date,
+  });
+};
 // Login - Get User Token
 export const loginUser = (userData, navigation) => dispatch => {
   console.log('loging user');

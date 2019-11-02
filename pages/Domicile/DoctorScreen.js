@@ -14,7 +14,7 @@ import {
 import {Button, Overlay} from 'react-native-elements';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {confirmUser, setRDV} from '../../actions/authActions';
+import {confirmUser} from '../../actions/authActions';
 import Loading from '../Loading';
 import {
   widthPercentageToDP as wp,
@@ -24,10 +24,13 @@ import {
 import DatePicker from 'react-native-datepicker';
 import * as Progress from 'react-native-progress';
 
-class ScheduleScreen extends React.Component {
+class DoctorScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {modalVisible: false, date: '', time: ''};
+  }
+  componentDidMount() {
+    alert(this.props.user.rdv.time);
   }
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
@@ -190,11 +193,8 @@ class ScheduleScreen extends React.Component {
     this.setModalVisible(true);
     let go = setInterval(() => {
       this.setModalVisible(false);
-      this.props.setRDV({
-        date: this.state.date,
-        time: this.state.time,
-      });
-      this.props.navigation.navigate('Doctor');
+      alert('Worked');
+      //this.props.navigation.navigate('Home');
       clearInterval(go);
     }, 2500);
   };
@@ -284,9 +284,8 @@ const styles = StyleSheet.create({
   },
 });
 
-ScheduleScreen.propTypes = {
+DoctorScreen.propTypes = {
   confirmUser: PropTypes.func.isRequired,
-  setRDV: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
 };
 
@@ -296,5 +295,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {confirmUser, setRDV},
-)(ScheduleScreen);
+  {confirmUser},
+)(DoctorScreen);
